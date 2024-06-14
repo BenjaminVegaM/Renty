@@ -1,0 +1,220 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+
+* {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.global-content 
+{
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.centro{
+    margin-left: auto;
+    margin-right: auto;
+
+    //width: 80%;
+    max-width: 90%;
+    
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.header-tabs{
+    margin-left: auto;
+    margin-right: auto;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.ui-button
+{
+    --background: #212121;
+    --background-focused: #828282;
+    --background-activated: #FF7F37;
+  
+    --color: #FFFFFF;
+    --color-focused: #d46f34;
+    --color-selected: #FF7F37;
+  
+    --border-radius: 5px;
+    --border-color: #828282;
+    --border-style: solid;
+    --border-width: 1px;
+  
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0);
+  
+    --ripple-color: #FF7F37;
+}
+
+.ui-button-light
+{
+    --background: #828282;
+    --background-focused: #828282;
+    --background-activated: #FF7F37;
+  
+    --color: #FFFFFF;
+    --color-focused: #d46f34;
+    --color-selected: #FF7F37;
+  
+    --border-radius: 5px;
+    --border-color: #828282;
+    --border-style: solid;
+    --border-width: 1px;
+  
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0);
+  
+    --ripple-color: #FF7F37;
+}
+
+.ui-button-highlight
+{
+    --background: #FF7F37;
+    --background-focused: #FF7F37;
+    --background-activated: #FF7F37;
+  
+    --color: #FFFFFF;
+    --color-focused: #d46f34;
+    --color-selected: #FF7F37;
+  
+    --border-radius: 5px;
+    --border-color: #00000000;
+    --border-style: solid;
+    --border-width: 1px;
+  
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0);
+  
+    --ripple-color: #FF7F37;
+}
+
+.bar
+{
+    background: #212121;
+}
+
+:root {
+	--ion-color-primary: #FF7F37;
+	--ion-color-primary-rgb: 255,127,55;
+	--ion-color-primary-contrast: #FFFFFF;
+	--ion-color-primary-contrast-rgb: 255,255,255;
+	--ion-color-primary-shade: #e07030;
+	--ion-color-primary-tint: #ff8c4b;
+
+	--ion-color-secondary: #828282;
+	--ion-color-secondary-rgb: 130,130,130;
+	--ion-color-secondary-contrast: #FFFFFF;
+	--ion-color-secondary-contrast-rgb: 255,255,255;
+	--ion-color-secondary-shade: #727272;
+	--ion-color-secondary-tint: #8f8f8f;
+
+	--ion-color-tertiary: #212121;
+	--ion-color-tertiary-rgb: 33,33,33;
+	--ion-color-tertiary-contrast: #FFFFFF;
+	--ion-color-tertiary-contrast-rgb: 255,255,255;
+	--ion-color-tertiary-shade: #1d1d1d;
+	--ion-color-tertiary-tint: #373737;
+
+	--ion-color-success: #2dd55b;
+	--ion-color-success-rgb: 45,213,91;
+	--ion-color-success-contrast: #000000;
+	--ion-color-success-contrast-rgb: 0,0,0;
+	--ion-color-success-shade: #28bb50;
+	--ion-color-success-tint: #42d96b;
+
+	--ion-color-warning: #ffc409;
+	--ion-color-warning-rgb: 255,196,9;
+	--ion-color-warning-contrast: #000000;
+	--ion-color-warning-contrast-rgb: 0,0,0;
+	--ion-color-warning-shade: #e0ac08;
+	--ion-color-warning-tint: #ffca22;
+
+	--ion-color-danger: #ff0000;
+	--ion-color-danger-rgb: 255,0,0;
+	--ion-color-danger-contrast: #000000;
+	--ion-color-danger-contrast-rgb: 0,0,0;
+	--ion-color-danger-shade: #e00000;
+	--ion-color-danger-tint: #ff1a1a;
+
+	--ion-color-light: #f6f8fc;
+	--ion-color-light-rgb: 246,248,252;
+	--ion-color-light-contrast: #000000;
+	--ion-color-light-contrast-rgb: 0,0,0;
+	--ion-color-light-shade: #d8dade;
+	--ion-color-light-tint: #f7f9fc;
+
+	--ion-color-medium: #5f5f5f;
+	--ion-color-medium-rgb: 95,95,95;
+	--ion-color-medium-contrast: #ffffff;
+	--ion-color-medium-contrast-rgb: 255,255,255;
+	--ion-color-medium-shade: #545454;
+	--ion-color-medium-tint: #6f6f6f;
+
+	--ion-color-dark: #181818;
+	--ion-color-dark-rgb: 24,24,24;
+	--ion-color-dark-contrast: #ffffff;
+	--ion-color-dark-contrast-rgb: 255,255,255;
+	--ion-color-dark-shade: #151515;
+	--ion-color-dark-tint: #2f2f2f;
+
+}
+
+/*
+Background: #181818
+Base: #212121
+Base Stroke: #828282
+Highlight: #FF7F37
+Primary Text: #FFFFFF
+Secondary Text: #CACACA
+*/

@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar>
+    <div class="header-tabs">
+
+      <ion-button [routerLink]="['/title-page']" color="secondary" aria-label="Return to title">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+
+      <ion-title>
+        Página Inicio de sesión
+      </ion-title>
+
+    </div>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class = "centro">
+
+    <ion-text>
+      <h1>
+        Inicia sesión con tu cuenta ya existente.
+      </h1>
+      <br>
+      Ingresa tu correo y contraseña para acceder.
+      <br>
+    </ion-text>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="LoginValidation()">
+      
+      <ion-item lines="none">
+        <ion-input
+        type="email"
+        formControlName="email"
+          placeholder="example@domain.com"
+          label="E-mail"
+          labelPlacement="stacked"
+          [errorText]="formError('email')"
+          required
+        >
+      </ion-input>
+    </ion-item>
+    
+      <ion-item lines="none">
+        <ion-input
+          type="password"
+          formControlName="password"
+          placeholder="pAsSwoRD123"
+          label="Password"
+          labelPlacement="stacked"
+          [errorText]="formError('password')"
+          required
+          >    
+        </ion-input>
+      </ion-item>
+      
+      <ion-button
+      type="submit"
+      expand="block"
+      [color]="btnColor"
+      [disabled]="!loginForm.valid"
+      [routerLink]="['/tabs/tab1']"
+      >  
+        {{btnText}}
+      </ion-button>
+      
+      <ion-button
+        [routerLink]="['/signup-page']"
+        color="secondary"
+      >
+        Aún no tengo una cuenta
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

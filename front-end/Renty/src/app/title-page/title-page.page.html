@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class = "centro">
+    <ion-text color="primary">
+      <h1>Bienvenido a Renty™</h1>
+      Por favor inicia sesión.
+    </ion-text>
+    <!--
+      <img src="../../assets/images/carlos.jpg" width="50%" height="auto">
+    -->
+    <ion-button [routerLink]="['/login-page']" color="primary">Iniciar Sesión</ion-button>
+    <ion-text><br>O si aún no tienes una cuenta, puedes crear una.</ion-text>
+    <ion-button [routerLink]="['/signup-page']" color="secondary">Crear Cuenta</ion-button>
+  </div>
+</ion-content>
