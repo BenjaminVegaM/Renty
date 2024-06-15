@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('../title-page/title-page.module').then( m => m.TitlePagePageModule)
   },
   {
+    path: 'settings-page',
+    loadChildren: () => import('../settings-page/settings-page.module').then( m => m.SettingsPagePageModule)
+  },
+  {
     path: 'date-details-page',
     loadChildren: () => import('../date-details-page/date-details-page.module').then( m => m.DateDetailsPagePageModule)
   }

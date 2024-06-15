@@ -1,13 +1,53 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
-    <ion-title>settings-page</ion-title>
+    <div class="header-tabs">
+
+      <ion-button [routerLink]="['/tabs/tab1']" color="secondary" aria-label="Volver">
+        <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <ion-title>
+        Configuración
+      </ion-title>
+
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">settings-page</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="centro">
+    <ion-list>
+      
+      <ion-item>
+        <ion-toolbar>
+          <ion-button color="secondary" aria-label="Botón de prueba" expand="block">
+            Opción 1
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+          <ion-button color="secondary" aria-label="Botón de prueba" expand="block">
+            Opción 2
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+      
+      <ion-item>
+        <ion-toolbar>
+          <ion-button color="secondary" aria-label="Botón de prueba" expand="block">
+            Opción 3
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+
+      <ion-button [routerLink]="['/title-page']" color="warning" aria-label="Cerrar Sesión">
+        Cerrar Sesión
+        <ion-icon name="log-out-outline" slot="end"></ion-icon>
+      </ion-button>
+      
+    </ion-list>
+  </div>
 </ion-content>
