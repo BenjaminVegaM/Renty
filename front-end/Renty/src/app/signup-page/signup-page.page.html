@@ -21,34 +21,32 @@
 
     <ion-text>
       <h1>
-        Create an account
+        Crea una cuenta
       </h1>
       <br>
-        Enter your personal information to create an account for this app
+        Ingresa tu información para crear una cuenta Renty
       <br>
-      <br>
-      Do you
     </ion-text>
 
     <ion-button
       [routerLink]="['/login-page']"
       color="secondary"
     >
-      Already have an account?
+      ¿Ya tienes una cuenta?
     </ion-button>
 
     <ion-text>
       <br>
     </ion-text>
 
-    <form [formGroup]="signupForm" (ngSubmit)="SignupValidation()">
+    <form [formGroup]="signupForm" (ngSubmit)="SignupValidation()" class="formStyle">
 
       <ion-item lines="none">
         <ion-input
           type="text"
           formControlName="name"
-          placeholder="Name Surname"
-          label="Full Name"
+          placeholder="Nombre Apellido"
+          label="Nombre"
           labelPlacement="stacked"
           [errorText]="formError('name')"
           required
@@ -61,7 +59,7 @@
           type="text"
           formControlName="run"
           placeholder="12345678-9"
-          label="R.U.N."
+          label="R.U.N. (sin puntos, con guión)"
           labelPlacement="stacked"
           [errorText]="formError('run')"
           required
@@ -73,7 +71,7 @@
         <ion-input
           type="email"
           formControlName="email"
-          placeholder="example@domain.com"
+          placeholder="ejemplo@dominio.com"
           label="E-mail"
           labelPlacement="stacked"
           [errorText]="formError('email')"
@@ -87,7 +85,7 @@
           type="password"
           formControlName="password"
           placeholder="pAsSwoRD123"
-          label="Password"
+          label="Contraseña"
           labelPlacement="stacked"
           [errorText]="formError('password')"
           required
@@ -99,8 +97,8 @@
         <ion-input
           type="password"
           formControlName="passwordConfirm"
-          placeholder="Repeat your password"
-          label="Confirm Password"
+          placeholder="Repite la contraseña"
+          label="Confirmar Contraseña"
           labelPlacement="stacked"
           [errorText]="formError('passwordConfirm')"
           required
@@ -115,7 +113,7 @@
           labelPlacement="stacked"
           (ionChange)="onRegionChange()"
         >
-          <div slot="label">Region</div>
+          <div slot="label">Región</div>
     
           <ion-select-option
             *ngFor="let region of regiones"
@@ -131,7 +129,7 @@
           interface="action-sheet"
           labelPlacement="stacked"
         >
-          <div slot="label">Commune</div>
+          <div slot="label">Comuna</div>
           
           <ion-select-option
             *ngFor="let comuna of comunas"
@@ -144,7 +142,7 @@
 
       <ion-item class="ion-margin-vertical" lines="none">
         <ion-toggle formControlName="tyc" labelPlacement="start" color="primary">
-          I accept the terms and conditions that apply
+          Acepto los términos y condiciones que aplican
         </ion-toggle>
       </ion-item>
 

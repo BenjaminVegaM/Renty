@@ -60,6 +60,7 @@
     margin-right: auto;
 
     //width: 80%;
+    min-width: 20%;
     max-width: 90%;
     
     display: flex; 
@@ -142,6 +143,15 @@
 .bar
 {
     background: #212121;
+}
+
+.formStyle
+{
+    max-width: 100%;
+    min-width: 20%;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 :root {
