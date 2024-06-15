@@ -1,13 +1,163 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
-    <ion-title>signup-page</ion-title>
+    <div class="header-tabs">
+
+      <ion-button [routerLink]="['/title-page']" color="secondary" aria-label="Return to title">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+
+      <ion-title>
+        Sign Up Page
+      </ion-title>
+
+    </div>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">signup-page</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class = "centro">
+
+    <ion-text>
+      <h1>
+        Create an account
+      </h1>
+      <br>
+        Enter your personal information to create an account for this app
+      <br>
+      <br>
+      Do you
+    </ion-text>
+
+    <ion-button
+      [routerLink]="['/login-page']"
+      color="secondary"
+    >
+      Already have an account?
+    </ion-button>
+
+    <ion-text>
+      <br>
+    </ion-text>
+
+    <form [formGroup]="signupForm" (ngSubmit)="SignupValidation()">
+
+      <ion-item lines="none">
+        <ion-input
+          type="text"
+          formControlName="name"
+          placeholder="Name Surname"
+          label="Full Name"
+          labelPlacement="stacked"
+          [errorText]="formError('name')"
+          required
+        >
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-input
+          type="text"
+          formControlName="run"
+          placeholder="12345678-9"
+          label="R.U.N."
+          labelPlacement="stacked"
+          [errorText]="formError('run')"
+          required
+        >
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-input
+          type="email"
+          formControlName="email"
+          placeholder="example@domain.com"
+          label="E-mail"
+          labelPlacement="stacked"
+          [errorText]="formError('email')"
+          required
+        >
+        </ion-input>
+      </ion-item>
+      
+      <ion-item lines="none">
+        <ion-input
+          type="password"
+          formControlName="password"
+          placeholder="pAsSwoRD123"
+          label="Password"
+          labelPlacement="stacked"
+          [errorText]="formError('password')"
+          required
+        >
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-input
+          type="password"
+          formControlName="passwordConfirm"
+          placeholder="Repeat your password"
+          label="Confirm Password"
+          labelPlacement="stacked"
+          [errorText]="formError('passwordConfirm')"
+          required
+        >
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-select
+          formControlName="region"
+          interface="action-sheet"
+          labelPlacement="stacked"
+          (ionChange)="onRegionChange()"
+        >
+          <div slot="label">Region</div>
+    
+          <ion-select-option
+            *ngFor="let region of regiones"
+            [value]="region.numero">
+            {{region.nombre}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-select
+          formControlName="comuna"
+          interface="action-sheet"
+          labelPlacement="stacked"
+        >
+          <div slot="label">Commune</div>
+          
+          <ion-select-option
+            *ngFor="let comuna of comunas"
+            [value]="comuna"
+          >
+            {{comuna}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="ion-margin-vertical" lines="none">
+        <ion-toggle formControlName="tyc" labelPlacement="start" color="primary">
+          I accept the terms and conditions that apply
+        </ion-toggle>
+      </ion-item>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        [color]="btnColor"
+        [disabled]="!signupForm.valid"
+        [routerLink]="['/tabs/tab1']"
+        >
+        {{btnText}}
+      </ion-button>
+
+    </form>
+  </div>
 </ion-content>
