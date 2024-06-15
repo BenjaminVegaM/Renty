@@ -109,8 +109,10 @@
       <ion-item lines="full">
         <ion-select
           formControlName="region"
-          interface="action-sheet"
           labelPlacement="stacked"
+          placeholder="Seleccionar región"
+          okText="Seleccionar"
+          cancelText="Cancelar"
           (ionChange)="onRegionChange()"
         >
           <div slot="label">Región</div>
@@ -126,8 +128,10 @@
       <ion-item lines="full">
         <ion-select
           formControlName="comuna"
-          interface="action-sheet"
           labelPlacement="stacked"
+          placeholder="Seleccionar comuna"
+          okText="Seleccionar"
+          cancelText="Cancelar"
         >
           <div slot="label">Comuna</div>
           
