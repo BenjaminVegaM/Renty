@@ -30,8 +30,6 @@ export class SignupPagePage implements OnInit
   regiones: Region[] = [];
   comunas: string[] = [];
 
-  // constructor(private form:FormBuilder, private servicio:AutenticacionService)
-  // La profesora había dejado lo de AuthenticationService y no se para que funcionay
   constructor(private form:FormBuilder, private regionService: RegionesService)
   {
     this.signupForm = this.form.group
