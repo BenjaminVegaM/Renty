@@ -10,17 +10,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
   <div class="centro">
-    <ion-toolbar>
-      <!-- Graph -->
-      <ion-item>
-        <img src="../../assets/images/pie-chart.png" width="50%" height="auto">
-      </ion-item>
-      <!-- Percentages -->
-      <ion-item>
-        
-        <ion-list>
+    <ion-title>
+      Estado de los arriendos
+    </ion-title>
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+
+        <ion-col>
+          <img src="../../assets/images/pie-chart.png" width="50%" height="auto">
+        </ion-col>
+
+        <ion-col>
           <ion-item>
             <ion-text color="success">
               79% Pagado
@@ -36,10 +37,10 @@
               9% Por Pagar
             </ion-text>
           </ion-item>
-        </ion-list>
-        
-      </ion-item>
-    </ion-toolbar>
-  </div>
+        </ion-col>
 
+      </ion-row>
+    </ion-grid>
+
+  </div>
 </ion-content>
