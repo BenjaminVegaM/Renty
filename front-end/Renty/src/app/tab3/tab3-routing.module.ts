@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'settings-page',
     loadChildren: () => import('../settings-page/settings-page.module').then( m => m.SettingsPagePageModule)
+  },
+  {
+    path: 'arriendo-details-page',
+    loadChildren: () => import('../arriendo-details-page/arriendo-details-page.module').then( m => m.ArriendoDetailsPagePageModule)
   }
 ];
 

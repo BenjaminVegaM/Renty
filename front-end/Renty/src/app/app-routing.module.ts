@@ -30,7 +30,11 @@ const routes: Routes = [
   {
     path: 'date-details-page',
     loadChildren: () => import('./date-details-page/date-details-page.module').then( m => m.DateDetailsPagePageModule)
+  },  {
+    path: 'arriendo-details-page',
+    loadChildren: () => import('./arriendo-details-page/arriendo-details-page.module').then( m => m.ArriendoDetailsPagePageModule)
   }
+
 ];
 @NgModule({
   imports: [
