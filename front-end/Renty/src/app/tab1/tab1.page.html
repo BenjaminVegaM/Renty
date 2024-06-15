@@ -7,10 +7,36 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Inicio</ion-title>
-    </ion-toolbar>
-  </ion-header>
   
+  <div class="centro">
+    <ion-toolbar>
+      <!-- Graph -->
+      <ion-item>
+        <img src="../../assets/images/pie-chart.png" width="50%" height="auto">
+      </ion-item>
+      <!-- Percentages -->
+      <ion-item>
+        
+        <ion-list>
+          <ion-item>
+            <ion-text color="success">
+              79% Pagado
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-text color="warning">
+              12% Medio Pagado
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-text color="danger">
+              9% Por Pagar
+            </ion-text>
+          </ion-item>
+        </ion-list>
+        
+      </ion-item>
+    </ion-toolbar>
+  </div>
+
 </ion-content>

@@ -8,21 +8,34 @@
 
 <ion-content [fullscreen]="true">
 
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
   <div *ngIf="arriendos">
     <ion-list lines="full">
       <ion-item *ngFor="let arriendo of arriendos.arriendos">
         <ion-toolbar>
-          <ion-icon name="key-outline"></ion-icon>
-          <ion-text>
+
+          <ion-title>
             {{ arriendo.nombre }}
-          </ion-text>
-          <ion-text>
-            [{{ arriendo.estado }}]
-          </ion-text>
+          </ion-title>
+
+          <ion-button slot="secondary">
+            <ion-text>
+              {{ arriendo.estado }}
+            </ion-text>
+          </ion-button>
+          
+          <ion-button
+            [routerLink]="['/title-page']"
+            color="secondary"
+            aria-label="Ver detalles"
+            slot="primary"
+          >
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
         </ion-toolbar>
-        <ion-button [routerLink]="['/title-page']" color="secondary" aria-label="Ver detalles">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-button>
+      
       </ion-item>
     </ion-list>
   </div>
