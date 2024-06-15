@@ -1,0 +1,55 @@
+{"arriendos":[
+    {
+        "nombre": "Arriendo 1",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo 2",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo (José)",
+        "estado": "Por pagar"
+    },
+    {
+        "nombre": "Motocierra XMl-124",
+        "estado": "Medio pagado"
+    },
+    {
+        "nombre": "Arriendo (Pamela)",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo (Luis Gonzalez)",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo (Luis Mendez)",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo (Bryam)",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo (ajksfnbk)",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo (AAAAA)",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo (sakjhdgjashd)",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Arriendo (ALEJANDRO)",
+        "estado": "Pagado"
+    },
+    {
+        "nombre": "Perro Pepe",
+        "estado": "Sin pagar"
+    }
+]
+}

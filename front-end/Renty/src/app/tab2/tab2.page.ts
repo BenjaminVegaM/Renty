@@ -13,23 +13,38 @@ export class Tab2Page {
   highlightedDates = [
     {
       date: '2024-06-06',
-      textColor: '#800080',
-      backgroundColor: '#ffc0cb',
+      textColor: 'var(--ion-color-danger-contrast)',
+      backgroundColor: 'var(--ion-color-danger)',
     },
     {
       date: '2024-06-10',
-      textColor: '#09721b',
-      backgroundColor: '#c8e5d0',
+      textColor: 'var(--ion-color-success-contrast)',
+      backgroundColor: 'var(--ion-color-success)',
     },
     {
-      date: '2024-02-20',
-      textColor: 'var(--ion-color-secondary-contrast)',
-      backgroundColor: 'var(--ion-color-secondary)',
+      date: '2024-05-20',
+      textColor: 'var(--ion-color-success-contrast)',
+      backgroundColor: 'var(--ion-color-success)',
     },
     {
-      date: '2024-06-23',
-      textColor: 'rgb(68, 10, 184)',
-      backgroundColor: 'rgb(211, 200, 229)',
+      date: '2024-06-19',
+      textColor: 'var(--ion-color-warning-contrast)',
+      backgroundColor: 'var(--ion-color-warning)',
+    },
+    {
+      date: '2024-07-10',
+      textColor: 'var(--ion-color-success-contrast)',
+      backgroundColor: 'var(--ion-color-success)',
+    },
+    {
+      date: '2024-06-20',
+      textColor: 'var(--ion-color-success-contrast)',
+      backgroundColor: 'var(--ion-color-success)',
+    },
+    {
+      date: '2024-07-20',
+      textColor: 'var(--ion-color-warning-contrast)',
+      backgroundColor: 'var(--ion-color-warning)',
     },
   ];
 
