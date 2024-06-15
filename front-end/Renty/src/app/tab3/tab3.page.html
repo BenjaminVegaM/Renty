@@ -7,9 +7,24 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Página Arriendos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div *ngIf="arriendos">
+    <ion-list lines="full">
+      <ion-item *ngFor="let arriendo of arriendos.arriendos">
+        <ion-toolbar>
+          <ion-icon name="key-outline"></ion-icon>
+          <ion-text>
+            {{ arriendo.nombre }}
+          </ion-text>
+          <ion-text>
+            [{{ arriendo.estado }}]
+          </ion-text>
+        </ion-toolbar>
+        <ion-button [routerLink]="['/title-page']" color="secondary" aria-label="Ver detalles">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
 </ion-content>
