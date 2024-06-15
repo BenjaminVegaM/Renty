@@ -16,6 +16,7 @@ export class ArriendoDetailsPagePage implements OnInit {
 
   @ViewChild(IonModal)
   editModal!: IonModal;
+  createModal!: IonModal;
 
   message = '';
   name!: string;
@@ -31,6 +32,24 @@ export class ArriendoDetailsPagePage implements OnInit {
   }
 
   onWillDismissEdit(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      // Here it should rewrite the original data with the new one as it was edited
+      this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
+
+  cancelCreate()
+  {
+    this.createModal.dismiss(null, 'cancel');
+  }
+
+  confirmCreate()
+  {
+    this.createModal.dismiss(this.name, 'confirm');
+  }
+
+  onWillDismissCreate(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
       // Here it should rewrite the original data with the new one as it was edited
