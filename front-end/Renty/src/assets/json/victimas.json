@@ -1,0 +1,17 @@
+{"victimas":[
+    {
+        "nombre": "Bonifacio Sandemetrio",
+        "estado": "Seguro"
+    },
+
+    {
+        "nombre": "Armando Casas",
+        "estado": "Grave"
+    },
+
+    {
+        "nombre": "Cristiano Ronaldo",
+        "estado": "En peligro"
+    }
+]
+}
