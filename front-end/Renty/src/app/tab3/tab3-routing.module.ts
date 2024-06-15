@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'title-page',
     loadChildren: () => import('../title-page/title-page.module').then( m => m.TitlePagePageModule)
+  },
+  {
+    path: 'settings-page',
+    loadChildren: () => import('../settings-page/settings-page.module').then( m => m.SettingsPagePageModule)
   }
 ];
 
