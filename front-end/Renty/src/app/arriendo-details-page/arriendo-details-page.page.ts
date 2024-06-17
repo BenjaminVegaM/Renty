@@ -71,4 +71,9 @@ export class ArriendoDetailsPagePage implements OnInit {
       this.message = `Hello, ${ev.detail.data}!`;
     }
   }
+
+  onClickEdit(event:Event, name:string)
+  {
+    console.log(name);
+  }
 }
