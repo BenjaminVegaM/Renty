@@ -16,6 +16,10 @@
         "estado": "Medio pagado"
     },
     {
+        "nombre": "Local 1 (Paulina)",
+        "estado": "Por pagar"
+    },
+    {
         "nombre": "Arriendo (Pamela)",
         "estado": "Pagado"
     },

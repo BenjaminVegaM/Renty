@@ -4,7 +4,7 @@
       <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
     </ion-button>
     <ion-title>
-      Página Arriendos
+      Arriendos
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,16 +12,22 @@
 <ion-content [fullscreen]="true">
 
   <ion-toolbar>
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar
+      placeholder="Buscar"
+      show-cancel-button="focus"
+      [debounce]="100"
+      (ionInput)="handleInput($event)"
+    >
+    </ion-searchbar>
   </ion-toolbar>
   <div *ngIf="arriendos">
     <ion-list lines="full">
-      <ion-item *ngFor="let arriendo of arriendos.arriendos">
+      <ion-item *ngFor="let arriendo of results">
         <ion-toolbar>
 
-          <ion-title>
+          <ion-text>
             {{ arriendo.nombre }}
-          </ion-title>
+          </ion-text>
 
           <ion-button slot="secondary">
             <ion-text>

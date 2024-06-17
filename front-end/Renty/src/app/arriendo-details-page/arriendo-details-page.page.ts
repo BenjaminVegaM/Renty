@@ -15,20 +15,35 @@ export class ArriendoDetailsPagePage implements OnInit {
   }
 
   @ViewChild(IonModal)
-  editModal!: IonModal;
-  createModal!: IonModal;
+  modal!: IonModal;
 
   message = '';
   name!: string;
 
+  textConfirm = "Confirmar";
+  textCancel = "Cancelar";
+  textTitulo = "Nuevo Cobro";
+  textPlaceholderNombre = "Nombre";
+  textPlaceholderCosto = "Costo";
+
+
+  get phNombre()
+  {
+    return this.textPlaceholderNombre;
+  }
+  get phCosto()
+  {
+    return this.textPlaceholderCosto;
+  }
+
   cancelEdit()
   {
-    this.editModal.dismiss(null, 'cancel');
+    this.modal.dismiss(null, 'cancel');
   }
 
   confirmEdit()
   {
-    this.editModal.dismiss(this.name, 'confirm');
+    this.modal.dismiss(this.name, 'confirm');
   }
 
   onWillDismissEdit(event: Event) {
@@ -41,12 +56,12 @@ export class ArriendoDetailsPagePage implements OnInit {
 
   cancelCreate()
   {
-    this.createModal.dismiss(null, 'cancel');
+    this.modal.dismiss(null, 'cancel');
   }
 
   confirmCreate()
   {
-    this.createModal.dismiss(this.name, 'confirm');
+    this.modal.dismiss(this.name, 'confirm');
   }
 
   onWillDismissCreate(event: Event) {

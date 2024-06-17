@@ -39,7 +39,7 @@
           </ion-button>
           
           <ion-button
-            id="open-edit-modal"
+            id="open-modal"
             color="secondary"
             aria-label="Editar cobro"
             slot="primary"
@@ -117,7 +117,7 @@
         <ion-toolbar>
           
           <ion-button
-            id="open-create-modal"
+            id="open-modal"
             color="success"
             aria-label="Editar cobro"
             slot="primary"
@@ -168,21 +168,45 @@
       </ion-item>
 
     </ion-list>
+    
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+
+        <ion-col>
+          <img src="../../assets/images/Detalle Chart.png" width="50%" height="auto">
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-text color="success">
+              90% Pagado
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-text color="danger">
+              10% Deuda
+            </ion-text>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    
   </div>
 
   <ion-modal
-  trigger="open-edit-modal"
+  trigger="open-modal"
   (willDismiss)="onWillDismissEdit($event)"
    >
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-button (click)="cancelEdit()">Cancelar</ion-button>
+          <ion-button (click)="cancelCreate()">{{ textCancel }}</ion-button>
         </ion-buttons>
-        <ion-title>Editando</ion-title>
+        <ion-title>{{ textTitulo }}</ion-title>
         <ion-buttons slot="end">
-          <ion-button (click)="confirmEdit()" [strong]="true" color="primary">Editar</ion-button>
+          <ion-button (click)="confirmCreate()" [strong]="true" color="primary">{{ textConfirm }}</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -192,49 +216,7 @@
           label="Nombre"
           labelPlacement="stacked"
           type="text"
-          placeholder="Arriendo base"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          label="Costo ($)"
-          labelPlacement="stacked"
-          type="number"
-          placeholder="350000"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-toggle labelPlacement="start" color="primary">
-          Repetitivo
-        </ion-toggle>
-      </ion-item>
-    </ion-content>
-  </ng-template>
-  </ion-modal>
-
-  <ion-modal
-  trigger="open-create-modal"
-  (willDismiss)="onWillDismissEdit($event)"
-   >
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button (click)="cancelCreate()">Cancelar</ion-button>
-        </ion-buttons>
-        <ion-title>Nuevo cobro</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="confirmCreate()" [strong]="true" color="primary">Crear</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-item>
-        <ion-input
-          label="Nombre"
-          labelPlacement="stacked"
-          type="text"
-          placeholder="Nombre del cobro"
+          placeholder="get"
         ></ion-input>
       </ion-item>
       <ion-item>
