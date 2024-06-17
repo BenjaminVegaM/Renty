@@ -14,17 +14,20 @@
   <div class="centro">
   
     <ion-datetime
+      #datetime
       locale="es-LA"
       [firstDayOfWeek]="1"
       presentation="date"
       [highlightedDates]="highlightedDates"
-      
+      (ionChange)="onSelectDate($event)"
     >
       <span slot="title">Selecciona un día</span>
       <span slot="time-label">Tiempo</span>
+      <ion-buttons slot="buttons">
+        <ion-button [routerLink]="['/date-details-page']" color="primary" (click)="datetime.confirm()">Ver detalles del día</ion-button>
+      </ion-buttons>
     </ion-datetime>
 
-    <ion-button [routerLink]="['/date-details-page']" color="primary">Ver detalles del día</ion-button>
 
   </div>
   

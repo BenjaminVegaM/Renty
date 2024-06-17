@@ -2,7 +2,7 @@
   <ion-toolbar>
     <div class="header-tabs">
 
-      <ion-button [routerLink]="['/title-page']" color="secondary" aria-label="Volver">
+      <ion-button [routerLink]="['/tabs/tab2']" color="secondary" aria-label="Volver">
         <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
       </ion-button>
 
@@ -15,7 +15,30 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-datetime-button
+    datetime="date"
+    locale="es-LA"
+    presentation="date"
+    expand="block"
+  ></ion-datetime-button>
+
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime
+        id="date"
+        locale="es-LA"
+        [firstDayOfWeek]="1"
+        presentation="date"
+        [highlightedDates]="highlightedDates"
+      ></ion-datetime>
+    </ng-template>
+  </ion-modal>
+
   <ion-button id="open-modal" expand="block">Open</ion-button>
+
+
+
   <p>{{ message }}</p>
   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
     <ng-template>

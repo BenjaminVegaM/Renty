@@ -36,4 +36,44 @@ export class DateDetailsPagePage implements OnInit {
       this.message = `Hello, ${ev.detail.data}!`;
     }
   }
+
+  formattedDate = '';
+
+  highlightedDates = [
+    {
+      date: '2024-06-06',
+      textColor: 'var(--ion-color-danger-contrast)',
+      backgroundColor: 'var(--ion-color-danger)',
+    },
+    {
+      date: '2024-06-10',
+      textColor: 'var(--ion-color-success-contrast)',
+      backgroundColor: 'var(--ion-color-success)',
+    },
+    {
+      date: '2024-05-20',
+      textColor: 'var(--ion-color-success-contrast)',
+      backgroundColor: 'var(--ion-color-success)',
+    },
+    {
+      date: '2024-06-19',
+      textColor: 'var(--ion-color-warning-contrast)',
+      backgroundColor: 'var(--ion-color-warning)',
+    },
+    {
+      date: '2024-07-10',
+      textColor: 'var(--ion-color-success-contrast)',
+      backgroundColor: 'var(--ion-color-success)',
+    },
+    {
+      date: '2024-06-20',
+      textColor: 'var(--ion-color-success-contrast)',
+      backgroundColor: 'var(--ion-color-success)',
+    },
+    {
+      date: '2024-07-20',
+      textColor: 'var(--ion-color-warning-contrast)',
+      backgroundColor: 'var(--ion-color-warning)',
+    },
+  ];
 }

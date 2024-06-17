@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DatetimeChangeEventDetail, DatetimeCustomEvent } from '@ionic/angular';
-//import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns/format';
+import { parseISO } from 'date-fns/parseISO';
 
 @Component({
   selector: 'app-tab2',
@@ -52,10 +53,14 @@ export class Tab2Page {
 
   onSelectDate(event:Event)
   {
-    /*const ev = event as CustomEvent<DatetimeChangeEventDetail>;
+    const ev = event as CustomEvent<DatetimeChangeEventDetail>;
+    
     if (typeof ev.detail.value === 'string') {
       this.formattedDate = format(parseISO(ev.detail.value), 'MMM d, yyyy');
-    }*/
+    }
+    
+    console.log(ev.detail.value);
+    console.log(this.formattedDate);
   }
 
 }
