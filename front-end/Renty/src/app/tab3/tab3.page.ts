@@ -12,6 +12,8 @@ export class Tab3Page {
 
   public results: any;
 
+  public arriendoSeleccionado: any;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -34,5 +36,11 @@ export class Tab3Page {
         }
       );
     }
+  }
+
+  onClickEdit(event:Event, arriendo:any)
+  {
+    console.log(arriendo);
+    this.arriendoSeleccionado = arriendo;
   }
 }
