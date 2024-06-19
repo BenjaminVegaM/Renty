@@ -1,57 +1,71 @@
 {"arriendos":[
     {
+        "id": 1,
         "nombre": "Arriendo 1",
         "estado": "Pagado"
     },
     {
+        "id": 2,
         "nombre": "Arriendo 2",
         "estado": "Pagado"
     },
     {
+        "id": 3,
         "nombre": "Arriendo (José)",
         "estado": "Por pagar"
     },
     {
+        "id": 4,
         "nombre": "Motocierra XMl-124",
         "estado": "Medio pagado"
     },
     {
+        "id": 5,
         "nombre": "Local 1 (Paulina)",
         "estado": "Por pagar"
     },
     {
+        "id": 6,
         "nombre": "Arriendo (Pamela)",
         "estado": "Pagado"
     },
     {
+        "id": 7,
         "nombre": "Arriendo (Luis Gonzalez)",
         "estado": "Pagado"
     },
     {
+        "id": 8,
         "nombre": "Arriendo (Luis Mendez)",
         "estado": "Pagado"
     },
     {
+        "id": 9,
         "nombre": "Arriendo (Bryam)",
         "estado": "Pagado"
     },
     {
+        "id": 10,
         "nombre": "Arriendo (ajksfnbk)",
         "estado": "Pagado"
     },
     {
+        "id": 11,
         "nombre": "Arriendo (AAAAA)",
         "estado": "Pagado"
     },
     {
+        "id": 12,
         "nombre": "Arriendo (sakjhdgjashd)",
         "estado": "Pagado"
     },
     {
+        "id": 13,
         "nombre": "Arriendo (ALEJANDRO)",
         "estado": "Pagado"
     },
     {
+        "id": 14,
         "nombre": "Perro Pepe",
         "estado": "Sin pagar"
     }
