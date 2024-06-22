@@ -29,7 +29,10 @@
             {{ arriendo.nombre }}
           </ion-text>
 
-          <ion-button slot="secondary">
+          <ion-button
+            slot="secondary"
+            [color]="getStateColor(arriendo.estado)"
+          >
             <ion-text>
               {{ arriendo.estado }}
             </ion-text>

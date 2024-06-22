@@ -43,4 +43,21 @@ export class Tab3Page {
     console.log(arriendo);
     this.arriendoSeleccionado = arriendo;
   }
+
+  getStateColor(estado:string)
+  {
+    console.log("Function called");
+    console.log(estado);
+    if (estado.toLowerCase() == "pagado") return "success";
+    else if (estado.toLowerCase() == "medio pagado") return "warning";
+    else if (estado.toLowerCase() == "deuda") return "danger";
+    else return "secondary";
+  }
+
+  changeState(estado:string)
+  {
+    if (estado.toLowerCase() == "seguro") console.log("Cambiando a peligro");
+    else if (estado.toLowerCase() == "en peligro") console.log("Cambiando a grave");
+    else if (estado.toLowerCase() == "grave") console.log("Cambiando a seguro");
+  }
 }
