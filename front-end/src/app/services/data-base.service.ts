@@ -9,17 +9,18 @@ import { firstValueFrom } from 'rxjs';
 export class DataBaseService {
 
   
-  loggedIn:boolean = false;
-  token = '';
-  loggedUserID = -1;
+  private loggedIn:boolean = false;
+  private token = '';
+  private loggedUserID = -1;
+  private arriendoID = -1;
   
-  apiDirection:string = 'http://localhost:5002/';
-  usuarioRoute:string = 'usuario/';
-  arriendoRoute:string = 'arriendo/';
-  boletaRoute:string = 'boleta/';
-  cobroRoute:string = 'cobro/';
-  eventoRoute:string = 'evento/';
-  clienteRoute:string = 'cliente/';
+  private apiDirection:string = 'http://localhost:5002/';
+  private usuarioRoute:string = 'usuario/';
+  private arriendoRoute:string = 'arriendo/';
+  private boletaRoute:string = 'boleta/';
+  private cobroRoute:string = 'cobro/';
+  private eventoRoute:string = 'evento/';
+  private clienteRoute:string = 'cliente/';
 
   httpHeader: HttpHeaders = new HttpHeaders();
 
@@ -141,7 +142,8 @@ export class DataBaseService {
   /*
     Arriendo
   */
-  async getArriendos(): Promise<any>
+  
+  async getListaArriendos(): Promise<any>
   {
     if (!this.loggedIn)
     {
@@ -151,7 +153,7 @@ export class DataBaseService {
 
     try
     {
-      const data = await firstValueFrom<any>(this.http.get(this.apiDirection + this.arriendoRoute + 'getArriendos', { headers: this.httpHeader }));
+      const data = await firstValueFrom<any>(this.http.get(this.apiDirection + this.arriendoRoute + 'getListaArriendos', { headers: this.httpHeader }));
       if (data)
       {
         // Guardar los datos o algo en el json quizá
@@ -165,6 +167,29 @@ export class DataBaseService {
       return null;
     }
   }
+
+  async getArriendo(): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+
+      const data = await firstValueFrom<any>(this.http.get(this.apiDirection + this.arriendoRoute + 'getArriendo', { headers: this.httpHeader }));
+      //console.log("Data Arriendo: ", data);
+      return data.arriendo;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
+
 
   async createArriendo(body:Object): Promise<any>
   {
@@ -185,14 +210,45 @@ export class DataBaseService {
     }
     catch (error)
     {
-      console.error("Error in Sign Up: ", error);
+      console.error("Error: ", error);
       return null;
     }
   }
 
+  selectedArriendo(id:number)
+  {
+    this.arriendoID = id;
+    this.httpHeader = this.httpHeader.set('arriendoID', this.arriendoID.toString());
+  }
+
   /*
     Boleta
-  */   
+  */
+
+  async createBoleta(body:any): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+      body.arriendoID = this.arriendoID;
+      const data = await firstValueFrom<any>(this.http.post(this.apiDirection + this.boletaRoute + 'crear', body, { headers: this.httpHeader }));
+      if (data && data.arriendo)
+      {
+        // Guardar los datos o algo en el json quizá
+      }
+      return data;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
 
   /*
     Cliente

@@ -16,14 +16,14 @@
 
 <ion-content [fullscreen]="true">
   <!-- no olvidarse de hacer el if para que si tarda en leer no mande error -->
-  <div>
+  <div *ngIf="canReadArriendo">
     <ion-list lines="none">
       <!-- esto debería ser un for, leyendo desde la base de datos-->
       <ion-item>
         <ion-toolbar>
 
           <ion-title>
-            [Nombre del arriendo]
+            {{ nombreArriendo }}
           </ion-title>
           
           <ion-button
@@ -40,7 +40,8 @@
       <ion-item>
         <ion-toolbar>
           <ion-text>
-            [La nota del usuario (el texto, no una calificación)]
+            <h5>Nota:</h5>
+            {{notaArriendo}}
           </ion-text>  
         </ion-toolbar>  
       </ion-item>  
@@ -61,17 +62,17 @@
         <ion-col>
           <ion-item lines="none">
             <ion-text color="success">
-              [pagado]% Pagado
+              {{porcentagePagado}}% Pagado
             </ion-text>
           </ion-item>
           <ion-item lines="none">
             <ion-text color="warning">
-              [medPag]% Medio pagado
+              {{porcentagePorPagar}}% Medio pagado
             </ion-text>
           </ion-item>
           <ion-item lines="none">
             <ion-text color="danger">
-              [deuda]% Deuda
+              {{porcentageDeuda}}% Deuda
             </ion-text>
           </ion-item>
         </ion-col>
@@ -88,6 +89,24 @@
       </ion-toolbar>
 
       <ion-toolbar>
+
+        <ion-button (click)="prevBoleta" color="tertiary" aria-label="Previa" slot="start">
+          <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+
+        <ion-item>
+          <ion-text>
+            {{mes}}
+          </ion-text>
+        </ion-item>
+
+        <ion-button (click)="nextBoleta" color="tertiary" aria-label="Siguiente" slot="end">
+          <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        
+      </ion-toolbar>
+
+      <ion-toolbar>
         <ion-item>
           <ion-text>
             Crear Boleta
@@ -98,28 +117,11 @@
           color="success"
           aria-label="Editar cobro"
           slot="primary"
-          >
+          (click)="openModalCreate()"
+        >
           <ion-icon name="add-outline" slot="icon-only"></ion-icon>
         </ion-button>
 
-      </ion-toolbar>
-
-      <ion-toolbar>
-
-        <ion-button (click)="prevBoleta" color="tertiary" aria-label="Previa" slot="start">
-          <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
-        </ion-button>
-
-        <ion-item>
-          <ion-text>
-            [Fecha]
-          </ion-text>
-        </ion-item>
-
-        <ion-button (click)="nextBoleta" color="tertiary" aria-label="Siguiente" slot="end">
-          <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
-        </ion-button>
-        
       </ion-toolbar>
 
       <ion-item>
@@ -132,44 +134,54 @@
   </div>
 
   <ion-modal
-  trigger="open-modal"
-  (willDismiss)="onWillDismissEdit($event)"
-   >
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button (click)="cancelCreate()">{{ textCancel }}</ion-button>
-        </ion-buttons>
-        <ion-title>{{ textTitulo }}</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="confirmCreate()" [strong]="true" color="primary">{{ textConfirm }}</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-item>
-        <ion-input
-          label="Nombre"
-          labelPlacement="stacked"
-          type="text"
-          placeholder="get"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          label="Costo ($)"
-          labelPlacement="stacked"
-          type="number"
-          placeholder="49990"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-toggle labelPlacement="start" color="primary">
-          Repetitivo
-        </ion-toggle>
-      </ion-item>
-    </ion-content>
-  </ng-template>
+    (willDismiss)="onWillDismissCreate($event)"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancelCreate()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Nueva Boleta</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="createForm" (ngSubmit)="creationValidation()" class="formStyle">
+
+          <ion-item lines="none">
+            <ion-input
+              type="date"
+              formControlName="date"
+              placeholder="Fecha"
+              label="Fecha"
+              labelPlacement="stacked"
+              required
+            >
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-toggle
+            labelPlacement="start"
+            color="primary"
+            formControlName="repetitive"
+          >
+              Repetitiva
+            </ion-toggle>
+          </ion-item>
+
+          <ion-button
+            type="submit"
+            expand="block"
+            [color]="btnColor"
+            [disabled]="!createForm.valid"
+            >
+            {{btnText}}
+          </ion-button>
+
+        </form>
+      </ion-content>
+    </ng-template>
   </ion-modal>
+
 </ion-content>

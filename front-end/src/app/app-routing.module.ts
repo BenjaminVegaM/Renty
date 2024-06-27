@@ -37,6 +37,10 @@ const routes: Routes = [
   },  {
     path: 'boleta-details-page',
     loadChildren: () => import('./boleta-details-page/boleta-details-page.module').then( m => m.BoletaDetailsPagePageModule)
+  },
+  {
+    path: 'boleta-creation',
+    loadChildren: () => import('./boleta-creation/boleta-creation.module').then( m => m.BoletaCreationPageModule)
   }
 
 

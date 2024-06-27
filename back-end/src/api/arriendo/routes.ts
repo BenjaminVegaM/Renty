@@ -5,7 +5,8 @@ import middlewares from '../middlewares';
 
 const arriendoRoutes = express.Router();
 
-arriendoRoutes.get('/getArriendos', controllers.getArriendos);
+arriendoRoutes.get('/getArriendo', controllers.getArriendo);
+arriendoRoutes.get('/getListaArriendos', controllers.getListaArriendos);
 arriendoRoutes.post('/crear', controllers.crear);
 arriendoRoutes.put('/modificar', controllers.modificar);
 arriendoRoutes.delete('/eliminar', controllers.eliminar);

@@ -20,8 +20,6 @@ export class Tab3Page {
 
   public results: any;
 
-  public arriendoSeleccionado: any;
-
   constructor(
     private form:FormBuilder,
     private http: HttpClient,
@@ -59,7 +57,7 @@ export class Tab3Page {
     });
     */
 
-    this.arriendos = await this.dbService.getArriendos();
+    this.arriendos = await this.dbService.getListaArriendos();
     if (this.arriendos)
     { 
       //console.log("Promise?", this.arriendos)
@@ -90,6 +88,8 @@ export class Tab3Page {
   onClickEdit(event:Event, arriendo:any)
   {
     console.log(arriendo.id);
+    this.dbService.selectedArriendo(arriendo.id);
+    this.router.navigate(['/arriendo-details-page']);
     //arriendo.id;
   }
 
@@ -157,7 +157,7 @@ export class Tab3Page {
       {
         console.log("Arriendo creado successfully");
 
-        this.arriendos = await this.dbService.getArriendos();
+        this.arriendos = await this.dbService.getListaArriendos();
 
         if (this.arriendos)
         { 

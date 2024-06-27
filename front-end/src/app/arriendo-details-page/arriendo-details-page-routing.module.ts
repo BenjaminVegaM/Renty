@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ArriendoDetailsPagePage
+  },
+  {
+    path: 'boleta-details-page',
+    loadChildren: () => import('../boleta-details-page/boleta-details-page.module').then( m => m.BoletaDetailsPagePageModule)
   }
 ];
 

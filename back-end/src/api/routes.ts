@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.use('/usuario', usuarioRoutes);
 router.use('/arriendo', arriendoRoutes);
-router.use('/boleta', arriendoRoutes);
+router.use('/boleta', boletaRoutes);
 router.use('/cobro', cobroRoutes);
 router.use('/evento', eventoRoutes);
 router.use('/cliente', clienteRoutes);
