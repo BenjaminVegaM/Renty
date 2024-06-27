@@ -15,10 +15,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-title>
-    Local 1 (Paulina)
-  </ion-title>
-
   <!-- no olvidarse de hacer el if para que si tarda en leer no mande error -->
   <div>
     <ion-list lines="none">
@@ -26,42 +22,9 @@
       <ion-item>
         <ion-toolbar>
 
-          <ion-text>
-            <!-- aquí debería ir el {{ cobro.nombre }} -->
-            Arriendo base
-          </ion-text>
-
-          <ion-button slot="secondary">
-            <ion-text>
-              <!-- aquí el {{ cobro.costo }} -->
-              350.000
-            </ion-text>
-          </ion-button>
-          
-          <ion-button
-            id="open-modal"
-            color="secondary"
-            aria-label="Editar cobro"
-            slot="primary"
-            (click)="onClickEdit($event, textTitulo)"
-          >
-            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-toolbar>
-      </ion-item>
-
-      <ion-item>
-        <ion-toolbar>
-
-          <ion-text>
-            Luz
-          </ion-text>
-
-          <ion-button slot="secondary">
-            <ion-text>
-              50.000
-            </ion-text>
-          </ion-button>
+          <ion-title>
+            [Nombre del arriendo]
+          </ion-title>
           
           <ion-button
             id="open-edit-modal"
@@ -76,99 +39,17 @@
 
       <ion-item>
         <ion-toolbar>
-
           <ion-text>
-            Agua
-          </ion-text>
-
-          <ion-button slot="secondary">
-            <ion-text>
-              50.000
-            </ion-text>
-          </ion-button>
-          
-          <ion-button
-            id="open-edit-modal"
-            color="secondary"
-            aria-label="Editar cobro"
-            slot="primary"
-          >
-            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-toolbar>
-      </ion-item>
-
-      <ion-item>
-        <ion-toolbar>
-
-          <ion-text>
-            Saldo anterior
-          </ion-text>
-
-          <ion-button slot="secondary">
-            <ion-text>
-              50.000
-            </ion-text>
-          </ion-button>
-          
-        </ion-toolbar>
-      </ion-item>
-
-      <ion-item>
-        <ion-toolbar>
-          
-          <ion-button
-            id="open-modal"
-            color="success"
-            aria-label="Editar cobro"
-            slot="primary"
-          >
-            <ion-icon name="add" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-toolbar>
-      
-      </ion-item>
-
-      <ion-item>
-        <ion-toolbar>
-          <ion-text>
-            Total
-          </ion-text>
-          <ion-button slot="secondary">
-            <ion-text>
-              500.000
-            </ion-text>
-          </ion-button>
-        </ion-toolbar>
-      </ion-item>
-
-      <ion-item>
-        <ion-toolbar>
-          <ion-text>
-            Pagado
-          </ion-text>
-          <ion-button slot="secondary">
-            <ion-text>
-              450.000
-            </ion-text>
-          </ion-button>
-        </ion-toolbar>
-      </ion-item>
-
-      <ion-item>
-        <ion-toolbar>
-          <ion-text>
-            Deuda
-          </ion-text>
-          <ion-button slot="secondary">
-            <ion-text>
-              50.000
-            </ion-text>
-          </ion-button>
-        </ion-toolbar>
-      </ion-item>
+            [La nota del usuario (el texto, no una calificación)]
+          </ion-text>  
+        </ion-toolbar>  
+      </ion-item>  
 
     </ion-list>
+
+    <ion-title>
+      Histórico
+    </ion-title>  
     
     <ion-grid>
       <ion-row class="ion-align-items-center">
@@ -178,20 +59,75 @@
         </ion-col>
 
         <ion-col>
-          <ion-item>
+          <ion-item lines="none">
             <ion-text color="success">
-              90% Pagado
+              [pagado]% Pagado
             </ion-text>
           </ion-item>
-          <ion-item>
+          <ion-item lines="none">
+            <ion-text color="warning">
+              [medPag]% Medio pagado
+            </ion-text>
+          </ion-item>
+          <ion-item lines="none">
             <ion-text color="danger">
-              10% Deuda
+              [deuda]% Deuda
             </ion-text>
           </ion-item>
         </ion-col>
 
       </ion-row>
     </ion-grid>
+
+    <ion-list lines="none">
+
+      <ion-toolbar>
+        <ion-title>
+          Boletas?
+        </ion-title>
+      </ion-toolbar>
+
+      <ion-toolbar>
+        <ion-item>
+          <ion-text>
+            Crear Boleta
+          </ion-text>
+        </ion-item>
+
+        <ion-button
+          color="success"
+          aria-label="Editar cobro"
+          slot="primary"
+          >
+          <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+
+      </ion-toolbar>
+
+      <ion-toolbar>
+
+        <ion-button (click)="prevBoleta" color="tertiary" aria-label="Previa" slot="start">
+          <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+
+        <ion-item>
+          <ion-text>
+            [Fecha]
+          </ion-text>
+        </ion-item>
+
+        <ion-button (click)="nextBoleta" color="tertiary" aria-label="Siguiente" slot="end">
+          <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        
+      </ion-toolbar>
+
+      <ion-item>
+        <ion-text>
+          Pagado: [PagadoDetalle] / [DeudaDetalle]
+        </ion-text>
+      </ion-item>
+    </ion-list>
     
   </div>
 

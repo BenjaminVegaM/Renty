@@ -78,7 +78,7 @@ export class Tab3Page {
     if (event != null)
     {
       const query = (<HTMLTextAreaElement>event.target)?.value.toLowerCase();
-      this.results = this.arriendos.arriendos.filter(
+      this.results = this.arriendos.filter(
         (o:any) => {
           //console.log(o['nombre'].toString().toLowerCase().indexOf(query));
           return o['nombre'].toString().toLowerCase().indexOf(query) > -1;
@@ -156,6 +156,15 @@ export class Tab3Page {
       if (creteArriendoReturn)
       {
         console.log("Arriendo creado successfully");
+
+        this.arriendos = await this.dbService.getArriendos();
+
+        if (this.arriendos)
+        { 
+          //console.log("Promise?", this.arriendos)
+          this.results = [...this.arriendos];
+        }
+
         this.modal.dismiss(this.name, 'confirm');
         this.modal.isOpen = false;
       }

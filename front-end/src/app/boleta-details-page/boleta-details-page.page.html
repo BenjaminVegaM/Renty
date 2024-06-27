@@ -1,0 +1,239 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="header-tabs">
+
+      <ion-button [routerLink]="['/tabs/tab3']" color="secondary" aria-label="Volver">
+        <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <ion-title>
+        [Nombre Arriendo]
+      </ion-title>
+
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-title>
+    [Fecha]
+  </ion-title>
+
+  <!-- no olvidarse de hacer el if para que si tarda en leer no mande error -->
+  <div>
+    <ion-list lines="none">
+      <!-- esto debería ser un for, leyendo desde la base de datos-->
+      <ion-item>
+        <ion-toolbar>
+
+          <ion-text>
+            <!-- aquí debería ir el {{ cobro.nombre }} -->
+            Arriendo base
+          </ion-text>
+
+          <ion-button slot="secondary">
+            <ion-text>
+              <!-- aquí el {{ cobro.costo }} -->
+              350.000
+            </ion-text>
+          </ion-button>
+          
+          <ion-button
+            id="open-modal"
+            color="secondary"
+            aria-label="Editar cobro"
+            slot="primary"
+            (click)="onClickEdit($event, textTitulo)"
+          >
+            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+
+          <ion-text>
+            Luz
+          </ion-text>
+
+          <ion-button slot="secondary">
+            <ion-text>
+              50.000
+            </ion-text>
+          </ion-button>
+          
+          <ion-button
+            id="open-edit-modal"
+            color="secondary"
+            aria-label="Editar cobro"
+            slot="primary"
+          >
+            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+
+          <ion-text>
+            Agua
+          </ion-text>
+
+          <ion-button slot="secondary">
+            <ion-text>
+              50.000
+            </ion-text>
+          </ion-button>
+          
+          <ion-button
+            id="open-edit-modal"
+            color="secondary"
+            aria-label="Editar cobro"
+            slot="primary"
+          >
+            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+
+          <ion-text>
+            Saldo anterior
+          </ion-text>
+
+          <ion-button slot="secondary">
+            <ion-text>
+              50.000
+            </ion-text>
+          </ion-button>
+          
+        </ion-toolbar>
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+          
+          <ion-button
+            id="open-modal"
+            color="success"
+            aria-label="Editar cobro"
+            slot="primary"
+          >
+            <ion-icon name="add" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+          <ion-text>
+            Total
+          </ion-text>
+          <ion-button slot="secondary">
+            <ion-text>
+              500.000
+            </ion-text>
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+          <ion-text>
+            Pagado
+          </ion-text>
+          <ion-button slot="secondary">
+            <ion-text>
+              450.000
+            </ion-text>
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+          <ion-text>
+            Deuda
+          </ion-text>
+          <ion-button slot="secondary">
+            <ion-text>
+              50.000
+            </ion-text>
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
+
+    </ion-list>
+    
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+
+        <ion-col>
+          <img src="../../assets/images/Detalle Chart.png" width="50%" height="auto">
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-text color="success">
+              90% Pagado
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-text color="danger">
+              10% Deuda
+            </ion-text>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    
+  </div>
+
+  <ion-modal
+  trigger="open-modal"
+  (willDismiss)="onWillDismissEdit($event)"
+   >
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancelCreate()">{{ textCancel }}</ion-button>
+        </ion-buttons>
+        <ion-title>{{ textTitulo }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirmCreate()" [strong]="true" color="primary">{{ textConfirm }}</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input
+          label="Nombre"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="get"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Costo ($)"
+          labelPlacement="stacked"
+          type="number"
+          placeholder="49990"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-toggle labelPlacement="start" color="primary">
+          Repetitivo
+        </ion-toggle>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+  </ion-modal>
+</ion-content>

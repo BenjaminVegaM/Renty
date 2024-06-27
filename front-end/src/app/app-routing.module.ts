@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'arriendo-details-page',
     loadChildren: () => import('./arriendo-details-page/arriendo-details-page.module').then( m => m.ArriendoDetailsPagePageModule)
+  },  {
+    path: 'boleta-details-page',
+    loadChildren: () => import('./boleta-details-page/boleta-details-page.module').then( m => m.BoletaDetailsPagePageModule)
   }
+
 
 ];
 @NgModule({

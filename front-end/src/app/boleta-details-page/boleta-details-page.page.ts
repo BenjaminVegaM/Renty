@@ -3,11 +3,11 @@ import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
-  selector: 'app-arriendo-details-page',
-  templateUrl: './arriendo-details-page.page.html',
-  styleUrls: ['./arriendo-details-page.page.scss'],
+  selector: 'app-boleta-details-page',
+  templateUrl: './boleta-details-page.page.html',
+  styleUrls: ['./boleta-details-page.page.scss'],
 })
-export class ArriendoDetailsPagePage implements OnInit {
+export class BoletaDetailsPagePage implements OnInit {
 
   constructor() { }
 
@@ -77,12 +77,4 @@ export class ArriendoDetailsPagePage implements OnInit {
     console.log(name);
   }
 
-  prevBoleta()
-  {
-
-  }
-  nextBoleta()
-  {
-    
-  }
 }
