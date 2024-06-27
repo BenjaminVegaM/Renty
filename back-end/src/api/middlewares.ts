@@ -5,27 +5,30 @@ import jwt from 'jsonwebtoken';
 const SECRET_KEY = process.env.JWT_SECRET_KEY ?? 'secretkey';
 
 export interface CustomRequest extends Request {
-  token: { id: string; username: string; rol: string };
+  token: { id: string; email: string; };
 }
 
 function authGuard(req: Request, res: Response, next: NextFunction): void {
-  if (!req.header('authorization')) {
+  
+  console.log(req.headers);
+  const authorization = req.header('authorization');
+  if (!authorization) {
     res.status(401).send({
-      message: 'Error: No se ha recibido el token de autenticación',
+      message: 'Error: The authorization token is missing.',
     });
     return;
   }
-  const token = req.header('authorization').replace('Bearer ', '');
+  const token = authorization.replace('Bearer ', '');
   try {
-    const decoded: { id: string; username: string; rol: string } = jwt.verify(
+    const decoded: { id: string; email: string; } = jwt.verify(
       token,
       SECRET_KEY,
-    ) as { id: string; username: string; rol: string };
+    ) as { id: string; email: string; };
     (req as CustomRequest).token = decoded;
     next();
   } catch (error) {
     res.status(401).send({
-      message: 'Error: Token de autenticación inválido',
+      message: 'Error: The authentication token is invalid.',
     });
     return;
   }

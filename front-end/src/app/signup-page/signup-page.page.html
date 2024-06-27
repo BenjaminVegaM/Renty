@@ -56,23 +56,10 @@
 
       <ion-item lines="none">
         <ion-input
-          type="text"
-          formControlName="run"
-          placeholder="12345678-9"
-          label="R.U.N. (sin puntos, con guión)"
-          labelPlacement="stacked"
-          [errorText]="formError('run')"
-          required
-        >
-        </ion-input>
-      </ion-item>
-
-      <ion-item lines="none">
-        <ion-input
           type="email"
           formControlName="email"
           placeholder="ejemplo@dominio.com"
-          label="E-mail"
+          label="Correo Electrónico"
           labelPlacement="stacked"
           [errorText]="formError('email')"
           required
@@ -106,56 +93,21 @@
         </ion-input>
       </ion-item>
 
-      <ion-item lines="full">
-        <ion-select
-          formControlName="region"
-          labelPlacement="stacked"
-          placeholder="Seleccionar región"
-          okText="Seleccionar"
-          cancelText="Cancelar"
-          (ionChange)="onRegionChange()"
-        >
-          <div slot="label">Región</div>
-    
-          <ion-select-option
-            *ngFor="let region of regiones"
-            [value]="region.numero">
-            {{ region.nombre }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-item lines="full">
-        <ion-select
-          formControlName="comuna"
-          labelPlacement="stacked"
-          placeholder="Seleccionar comuna"
-          okText="Seleccionar"
-          cancelText="Cancelar"
-        >
-          <div slot="label">Comuna</div>
-          
-          <ion-select-option
-            *ngFor="let comuna of comunas"
-            [value]="comuna"
-          >
-            {{comuna}}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-
       <ion-item class="ion-margin-vertical" lines="none">
         <ion-toggle formControlName="tyc" labelPlacement="start" color="primary">
           Acepto los términos y condiciones que aplican
         </ion-toggle>
       </ion-item>
 
+      <ion-text color="danger">
+        {{emailAlreadyExistsMessage}}
+      </ion-text>
+
       <ion-button
         type="submit"
         expand="block"
         [color]="btnColor"
         [disabled]="!signupForm.valid"
-        [routerLink]="['/tabs/tab1']"
         >
         {{btnText}}
       </ion-button>

@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormError, errorMsg } from '../misc/form-errors';
+import { Router } from '@angular/router';
+import { DataBaseService } from '../services/data-base.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,8 +11,13 @@ import { FormError, errorMsg } from '../misc/form-errors';
 })
 export class LoginPagePage implements OnInit {
   loginForm: FormGroup;
+  wrongLoginMessage:string = "";
 
-  constructor(private form:FormBuilder)
+  constructor(
+    private form:FormBuilder,
+    private dbService:DataBaseService,
+    private router: Router
+  )
   {
     this.loginForm = this.form.group
     ({
@@ -20,8 +27,20 @@ export class LoginPagePage implements OnInit {
   }
 
 
-  ngOnInit() {
+  ngOnInit()
+  {
   }
+
+  async ionViewDidEnter()
+  {
+    // If a session is already active, go directly to the tabs
+    if ((await this.dbService.sessionExists()).valueOf())
+    {
+      console.log("A session already exists");
+      this.router.navigate(['/tabs/tab1']);
+    }
+  }
+
   get btnColor()
   {
     return this.loginForm.valid ? 'primary' : 'tertiary';
@@ -31,24 +50,33 @@ export class LoginPagePage implements OnInit {
     //return this.loginForm.valid ? 'Sign Up!' : 'You must fill all the fields';
     return 'Log In';
   }
-
-  LoginValidation()
+  get cantLoginMessage()
   {
-    //Aquí se debería de aplicar la validación de usuario ya existente
-    console.log(this.loginForm.value)
+    return this.wrongLoginMessage;
+  }
 
-    /*
-    if(this.signupForm.get("user")?.value=='pepito' && this.signupForm.get("password")?.value=='123')
+  async LoginValidation()
+  {
+    this.wrongLoginMessage = "";
+
+    try
     {
-      this.message="user esite";
-    }
-    */
+      const loginReturn = await this.dbService.logIn(this.loginForm.value);
+      //console.log("Login returned = ", loginReturn);
 
-/* 
-    this.servicio.IniciarSesion(this.signupForm.get("user")?.value,this.signupForm.get("password")?.value).subscribe(data=>{
-       console.log(data);
-    });
-*/
+      if (loginReturn)
+      {
+        console.log("Logged in successfully");
+        this.router.navigate(['/tabs/tab1']);
+      }
+      else
+      {
+        console.log("Account does not exist or the data is wrong.");
+        this.wrongLoginMessage = "La cuenta no existe o los datos son incorrectos.";
+      }
+    } catch (error) {
+      console.error("Login error: ", error);
+    }
   }
 
   formError(field: string): string | null

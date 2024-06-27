@@ -24,7 +24,7 @@
         Inicia sesión con tu cuenta ya existente.
       </h1>
       <br>
-      Ingresa tu correo y contraseña para acceder.
+      Ingresa tu email y contraseña para acceder.
       <br>
     </ion-text>
     
@@ -55,13 +55,16 @@
         >    
         </ion-input>
       </ion-item>
+
+      <ion-text color="danger">
+        {{cantLoginMessage}}
+      </ion-text>
       
       <ion-button
         type="submit"
         expand="block"
         [color]="btnColor"
         [disabled]="!loginForm.valid"
-        [routerLink]="['/tabs/tab1']"
       >  
         {{btnText}}
       </ion-button>
