@@ -18,36 +18,131 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="centro">
     <ion-list>
-      
-      <ion-item>
-        <ion-toolbar>
-          <ion-button color="secondary" aria-label="Botón de prueba" expand="block">
-            Opción 1
-          </ion-button>
-        </ion-toolbar>
-      </ion-item>
 
       <ion-item>
         <ion-toolbar>
-          <ion-button color="secondary" aria-label="Botón de prueba" expand="block">
-            Opción 2
+          <ion-button color="secondary" aria-label="Botón de prueba" expand="block" (click)="openModal()">
+            Cambiar información de la cuenta
+            <ion-icon name="create" slot="end"></ion-icon>
           </ion-button>
         </ion-toolbar>
       </ion-item>
       
       <ion-item>
         <ion-toolbar>
-          <ion-button color="secondary" aria-label="Botón de prueba" expand="block">
-            Opción 3
+          <ion-button (click)="logOut()" color="warning" aria-label="Cerrar Sesión" expand="block">
+            Cerrar Sesión
+            <ion-icon name="log-out" slot="end"></ion-icon>
           </ion-button>
         </ion-toolbar>
       </ion-item>
-
-      <ion-button [routerLink]="['/title-page']" color="warning" aria-label="Cerrar Sesión">
-        Cerrar Sesión
-        <ion-icon name="log-out-outline" slot="end"></ion-icon>
-      </ion-button>
+      
+      <ion-item>
+        <ion-toolbar>
+          <ion-button id="deletionAlert" color="danger" aria-label="Botón de prueba" expand="block">
+            Eliminar cuenta
+            <ion-icon name="trash" slot="end"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      </ion-item>
       
     </ion-list>
   </div>
+
+  <!--
+  Form
+  -->
+
+  <ion-modal
+    (willDismiss)="onWillDismissEdit($event)"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancelEdit()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Modificar Cuenta</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="editForm" (ngSubmit)="modificationValidation()" class="formStyle">
+
+          <ion-item lines="none">
+            <ion-input
+              type="text"
+              formControlName="name"
+              placeholder="Nombre Apellido"
+              label="Nombre"
+              labelPlacement="stacked"
+              [errorText]="formError('name')"
+              required
+            >
+            </ion-input>
+          </ion-item>
+    
+          <ion-item lines="none">
+            <ion-input
+              type="email"
+              formControlName="email"
+              placeholder="ejemplo@dominio.com"
+              label="Correo Electrónico"
+              labelPlacement="stacked"
+              [errorText]="formError('email')"
+              required
+            >
+            </ion-input>
+          </ion-item>
+          
+          <ion-item lines="none">
+            <ion-input
+              type="password"
+              formControlName="password"
+              placeholder="pAsSwoRD123"
+              label="Contraseña"
+              labelPlacement="stacked"
+              [errorText]="formError('password')"
+              required
+            >
+            </ion-input>
+          </ion-item>
+    
+          <ion-item lines="none">
+            <ion-input
+              type="password"
+              formControlName="passwordConfirm"
+              placeholder="Repite la contraseña"
+              label="Confirmar Contraseña"
+              labelPlacement="stacked"
+              [errorText]="formError('passwordConfirm')"
+              required
+            >
+            </ion-input>
+          </ion-item>
+
+          <ion-text color="danger">
+            {{emailAlreadyExistsMessage}}
+          </ion-text>
+
+          <ion-button
+            type="submit"
+            expand="block"
+            [color]="btnColor"
+            [disabled]="!editForm.valid"
+            >
+            {{btnText}}
+          </ion-button>
+
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-alert
+    trigger="deletionAlert"
+    header="¿Estás seguro de querer eliminar tu cuenta de manera PERMANENTE?"
+    [buttons]="alertButtons"
+    (didDismiss)="confirmDelete($event)"
+  ></ion-alert>
+
 </ion-content>

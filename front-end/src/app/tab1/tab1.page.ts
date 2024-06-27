@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DataBaseService } from '../services/data-base.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -7,15 +9,32 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  date: string;
-  type: 'string';
+  constructor(private dbService:DataBaseService, private router:Router) { }
 
-  constructor() {
-    this.date = '';
-    this.type = 'string';
+  async ionViewDidEnter()
+  {
+    console.log("Current Nav: ", this.router.getCurrentNavigation());
+
+    // If a session NOT active, go directly to the title
+    if (!(await this.dbService.sessionExists()).valueOf())
+    {
+      console.log("No has iniciado sesión.");
+      this.router.navigate(['/title-page']);
+    }
   }
 
-  onChange(event: any) {
-    console.log(event);
+  get pagadoPer()
+  {
+    return '79';
+  }
+  
+  get medioPagadoPer()
+  {
+    return '12';
+  }
+
+  get deudaPer()
+  {
+    return '9';
   }
 }

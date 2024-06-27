@@ -1,8 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    
     <ion-button [routerLink]="['/settings-page']" color="secondary" aria-label="Configuración" slot="end">
-      <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
     </ion-button>
+
     <ion-title>
       Resumen
     </ion-title>
@@ -14,6 +16,7 @@
     <ion-title>
       Estado de los arriendos
     </ion-title>
+
     <ion-grid>
       <ion-row class="ion-align-items-center">
 
@@ -24,17 +27,17 @@
         <ion-col>
           <ion-item>
             <ion-text color="success">
-              79% Pagado
+              {{ pagadoPer }}% Pagado
             </ion-text>
           </ion-item>
           <ion-item>
             <ion-text color="warning">
-              12% Medio Pagado
+              {{ medioPagadoPer }}% Medio Pagado
             </ion-text>
           </ion-item>
           <ion-item>
             <ion-text color="danger">
-              9% Por Pagar
+              {{ deudaPer }}% Por Pagar
             </ion-text>
           </ion-item>
         </ion-col>

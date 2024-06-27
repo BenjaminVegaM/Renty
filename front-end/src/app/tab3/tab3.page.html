@@ -1,11 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    
     <ion-button [routerLink]="['/settings-page']" color="secondary" aria-label="Configuración" slot="end">
-      <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
     </ion-button>
+
     <ion-title>
       Arriendos
     </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +23,7 @@
     >
     </ion-searchbar>
   </ion-toolbar>
-  <div *ngIf="arriendos">
+  <div *ngIf="canReadArriendos">
     <ion-list lines="full">
       <ion-item *ngFor="let arriendo of results">
         <ion-toolbar>
@@ -34,7 +37,7 @@
             [color]="getStateColor(arriendo.estado)"
           >
             <ion-text>
-              {{ arriendo.estado }}
+              {{ getStateName(arriendo.estado) }}
             </ion-text>
           </ion-button>
           
@@ -50,7 +53,75 @@
         </ion-toolbar>
       
       </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+
+          <ion-button
+            expand="block"
+            color="success"
+            aria-label="Añadir arriendo"
+            (click)="openModalCreate()"
+          >
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      
+      </ion-item>
     </ion-list>
   </div>
+
+  <ion-modal
+    (willDismiss)="onWillDismissCreate($event)"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancelCreate()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Nuevo arriendo</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="createForm" (ngSubmit)="creationValidation()" class="formStyle">
+
+          <ion-item lines="none">
+            <ion-input
+              type="text"
+              formControlName="name"
+              placeholder="Nombre del arriendo"
+              label="Nombre"
+              labelPlacement="stacked"
+              [errorText]="formError('name')"
+              required
+            >
+            </ion-input>
+          </ion-item>
+    
+          <ion-item lines="none">
+            <ion-input
+              type="text"
+              formControlName="note"
+              placeholder="Puedes añadir lo que quieras aquí."
+              label="Notas adicionales"
+              labelPlacement="stacked"
+            >
+            </ion-input>
+          </ion-item>
+
+          <ion-button
+            type="submit"
+            expand="block"
+            [color]="btnColor"
+            [disabled]="!createForm.valid"
+            >
+            {{btnText}}
+          </ion-button>
+
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>

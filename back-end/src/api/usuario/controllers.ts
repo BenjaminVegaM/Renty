@@ -137,7 +137,7 @@ async function createAccount(req: Request, res: Response): Promise<void>
     { expiresIn: '24h' },
   );
 
-  const retDatatoken = await StartQuery("INSERT INTO tokens (token, id_cuenta) VALUES ('" + token + "', '" + idUser + "');");
+  const retDatatoken = await StartQuery(`INSERT INTO tokens (token, id_cuenta) VALUES ( '${token}', ${idUser});`);
   const tokenData = retDatatoken[0];
   console.log("Login Token SQL Return =", tokenData);
 
@@ -211,7 +211,9 @@ async function logIn(req: Request, res: Response): Promise<void>
     { expiresIn: '24h' },
   );
 
-  const retDatatoken = await StartQuery("INSERT INTO tokens (token, id_cuenta) VALUES ('" + token + "', '" + user.id + "');");
+  console.log("Token: ", token);
+
+  const retDatatoken = await StartQuery(`INSERT INTO tokens (token, id_cuenta) VALUES ( '${token}', ${user.id});`);
   const tokenData = retDatatoken[0];
   console.log("Login Token SQL Return =", tokenData);
 
@@ -224,10 +226,17 @@ async function logIn(req: Request, res: Response): Promise<void>
       expiresOn: new Date(Date.now() + 24 * 60 * 60 * 1000).getTime(),
     },
     user: {
-      name: user.name
+      id: user.id,
+      name: user.nombre
     },
     response: true
   });
+}
+
+async function logOut(req: Request, res: Response): Promise<void>
+{
+  console.log("Logging out");
+
 }
 
 async function modifyAccount(req: Request, res: Response): Promise<void>
@@ -344,5 +353,6 @@ export default {
   createAccount,
   logIn,
   modifyAccount,
+  logOut,
   deleteAccount
 };

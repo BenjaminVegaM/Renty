@@ -1,20 +1,20 @@
 import express from 'express';
 
+import usuarioRoutes from './usuario/routes';
+import arriendoRoutes from './arriendo/routes';
 import boletaRoutes from './boleta/routes';
-import clienteRoutes from './cliente/routes';
 import cobroRoutes from './cobro/routes';
 import eventoRoutes from './evento/routes';
-import propiedadRoutes from './propiedad/routes';
-import usuarioRoutes from './usuario/routes';
+import clienteRoutes from './cliente/routes';
 
 const router = express.Router();
 
+router.use('/usuario', usuarioRoutes);
+router.use('/arriendo', arriendoRoutes);
 router.use('/boleta', boletaRoutes);
-router.use('/cliente', clienteRoutes);
 router.use('/cobro', cobroRoutes);
 router.use('/evento', eventoRoutes);
-router.use('/propiedad', propiedadRoutes);
-router.use('/usuario', usuarioRoutes);
+router.use('/cliente', clienteRoutes);
 
 router.use('*', (req, res) => {
   res.status(404).json({

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DatetimeChangeEventDetail, DatetimeCustomEvent } from '@ionic/angular';
 import { format } from 'date-fns/format';
 import { parseISO } from 'date-fns/parseISO';
+import { DataBaseService } from '../services/data-base.service';
 
 @Component({
   selector: 'app-tab2',
@@ -49,7 +51,19 @@ export class Tab2Page {
     },
   ];
 
-  constructor() {}
+  constructor(private dbService:DataBaseService, private router:Router) { }
+
+  async ionViewDidEnter()
+  {
+    console.log("Current Nav: ", this.router.getCurrentNavigation());
+
+    // If a session NOT active, go directly to the title
+    if (!(await this.dbService.sessionExists()).valueOf())
+    {
+      console.log("No has iniciado sesión.");
+      this.router.navigate(['/title-page']);
+    }
+  }
 
   onSelectDate(event:Event)
   {
