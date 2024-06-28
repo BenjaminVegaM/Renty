@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 })
 export class Tab1Page {
 
+  _porPagado = '';
+  _porPorPagar = '';
+  _porDeuda = '';
+
   constructor(private dbService:DataBaseService, private router:Router) { }
 
   async ionViewDidEnter()
@@ -21,20 +25,39 @@ export class Tab1Page {
       console.log("No has iniciado sesión.");
       this.router.navigate(['/title-page']);
     }
+
+    const data = await this.dbService.getEstadisticasGenerales();
+    console.log(data);
+
+    if (data && data.data)
+    {
+      var arrTodoPagado = data.data.todo_pagado;
+      var arrMixtoPagado = data.data.mixto;
+      var arrNadaPagado = data.data.todo_sin_pagar;
+      var arrTotales = arrTodoPagado + arrMixtoPagado + arrNadaPagado;
+      this._porPagado = (arrTodoPagado / arrTotales * 100).toFixed(2).toString();
+      this._porPorPagar = (arrMixtoPagado / arrTotales * 100).toFixed(2).toString();
+      this._porDeuda = (arrNadaPagado / arrTotales * 100).toFixed(2).toString();
+    }
+  }
+
+  private updateScreenData()
+  {
+
   }
 
   get pagadoPer()
   {
-    return '79';
+    return this._porPagado;
   }
   
   get medioPagadoPer()
   {
-    return '12';
+    return this._porPorPagar;
   }
 
   get deudaPer()
   {
-    return '9';
+    return this._porDeuda;
   }
 }

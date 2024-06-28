@@ -217,6 +217,26 @@ export class DataBaseService {
     }
   }
 
+  async getEstadisticasGenerales(): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+      const data = await firstValueFrom<any>(this.http.get(this.apiDirection + this.arriendoRoute + 'getDatosPagos', { headers: this.httpHeader }));
+      return data;
+    }
+    catch (error)
+    {
+      console.error("Error in Sign Up: ", error);
+      return null;
+    }
+  }
+
   selectedArriendo(id:number)
   {
     this.arriendoID = id;
