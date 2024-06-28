@@ -96,8 +96,8 @@ export class BoletaDetailsPagePage implements OnInit {
       var vTotal = vPagado + vDeuda;
       this._valorPagado = vPagado.toString();
       this._valorDeuda = vDeuda.toString();
-      this._porcentagePagado = (vPagado / vTotal * 100).toString();
-      this._porcentageDeuda = (vDeuda / vTotal * 100).toString();
+      this._porcentagePagado = (vPagado / vTotal * 100).toFixed(2).toString();
+      this._porcentageDeuda = (vDeuda / vTotal * 100).toFixed(2).toString();
     }
   }
 
@@ -149,6 +149,14 @@ export class BoletaDetailsPagePage implements OnInit {
   get getHayBoletas()
   {
     return this.hayCobros;
+  }
+  getColorPagado(pagado:boolean)
+  {
+    return pagado ? 'success' : 'danger';
+  }
+  getIconPagado(pagado:boolean)
+  {
+    return pagado ? 'checkmark-circle' : 'close-circle';
   }
 
   @ViewChild(IonModal)
@@ -220,7 +228,8 @@ export class BoletaDetailsPagePage implements OnInit {
     try
     { 
       this.dbService.selectedCobro(cobro.id);
-      await this.dbService.cambiarEstadoCobro(cobro.pagado);
+      if (cobro.pagado) await this.dbService.despagarCobro();
+      else await this.dbService.pagarCobro();
       await this.UpdateScreenInfo();
     }
     catch (error)

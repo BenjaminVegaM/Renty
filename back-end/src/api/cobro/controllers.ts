@@ -1,9 +1,4 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-
-import { validateIn } from '../functions';
-import { CustomRequest } from '../middlewares';
 import { StartQuery } from '../../main';
 
 
@@ -97,8 +92,7 @@ async function getCobro(req: Request, res: Response): Promise<void>
    var id = req.header('cobroID');
    console.log("id: ", id);
  
-   // Checks if the token exists
-   if (!token)
+   if (!id)
    {
      res.status(401).send({
        message: 'Error: The cobro ID is missing.',
@@ -173,7 +167,7 @@ async function getCobros(req: Request, res: Response): Promise<void>
    console.log("id: ", id);
  
    // Checks if the token exists
-   if (!token)
+   if (!id)
    {
      res.status(401).send({
        message: 'Error: The boleta ID is missing.',
@@ -229,7 +223,6 @@ async function pagarCobro(req: Request, res: Response): Promise<void>
 {
   console.log("Pagando Cobro");
 
-  
   // Converts the token
   var token = req.header('token');
   console.log("Token: ", token);
@@ -249,7 +242,7 @@ async function pagarCobro(req: Request, res: Response): Promise<void>
    console.log("id: ", id);
  
    // Checks if the token exists
-   if (!token)
+   if (!id)
    {
      res.status(401).send({
        message: 'Error: The cobro ID is missing.',
@@ -278,7 +271,7 @@ async function pagarCobro(req: Request, res: Response): Promise<void>
 
   // Tries to get all Cobros from the Boleta created by this user (using the token)
   var cobrData = await StartQuery(`UPDATE cobro SET pagado = 1 WHERE id_creador = ${ userID } AND id = ${id};`);
-  console.log("arrData =", cobrData[0]);
+  console.log("arrData =", cobrData);
 
   // If it doesn't find any, that means the user doesn't have any yet
   if (!cobrData) {
@@ -354,7 +347,7 @@ async function despagarCobro(req: Request, res: Response): Promise<void>
 
   // Tries to get all Cobros from the Boleta created by this user (using the token)
   var cobrData = await StartQuery(`UPDATE cobro SET pagado = 0 WHERE id_creador = ${ userID } AND id = ${id};`);
-  console.log("arrData =", cobrData[0]);
+  console.log("arrData =", cobrData);
 
   // If it doesn't find any, that means the user doesn't have any yet
   if (!cobrData) {
@@ -375,6 +368,73 @@ async function despagarCobro(req: Request, res: Response): Promise<void>
     response: true,
     cobro: cobrData[0]
   })
+}
+
+async function pagar(req: Request, res: Response): Promise<void>
+{
+  console.log("PAGANDO");
+
+  // Converts the token
+  var token = req.header('token');
+  console.log("Token: ", token);
+
+  // Checks if the token exists
+  if (!token)
+  {
+    res.status(401).send({
+      message: 'Error: You do not have access to this account.',
+      response: false
+    });
+    return;
+  }
+
+  console.log(req.body);
+
+  // Checks if there is data missing
+  if (!req.body || !req.body.nombre || !req.body.valor || !req.body.boletaID ) {
+    console.log("Error: Missing data");
+    res.status(400).send({
+      message: 'Error: Missing data.',
+      response: false
+    });
+    return;
+  }
+
+  const { nombre, valor, boletaID } = req.body;
+
+  // Checks if the token is valid
+  var userData = await StartQuery(`SELECT id FROM usuario WHERE id = ( SELECT id_cuenta FROM tokens WHERE token = '${token}' );`);
+  var userID = userData[0].id;
+  console.log("User ID from Token =", userID);
+
+   // If it doesn't find any, that means the token is not valid
+   if (!userID) {
+    console.log("Token invalid.");
+    res
+      .status(400)
+      .json({
+        message: 'This token is invalid.',
+        response: false
+      })
+      .end();
+    return;
+  }
+
+  // Creates the user using the values received
+  await StartQuery(`INSERT INTO cobro (nombre, valor, pagado, id_creador, id_boleta) VALUES ('${nombre}', '${valor}', 0, ${userID}, ${boletaID});`);
+  
+  console.log("Cobro inserted successfully");
+
+  res.status(201).send({
+    message: 'Cobro created successfully.',
+    cobro: {
+      nombre,
+      valor,
+      boletaID,
+      userID: userID
+    },
+    response: true
+  });
 }
 
 export default {

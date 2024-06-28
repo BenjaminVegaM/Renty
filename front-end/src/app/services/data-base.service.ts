@@ -372,27 +372,90 @@ export class DataBaseService {
   async cambiarEstadoCobro(currentState:boolean): Promise<any>
   {
     if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+      console.log("Header¿¿¿ ", this.httpHeader);
+      const data1 = await firstValueFrom<any>(this.http.get(this.apiDirection + this.cobroRoute + 'getCobro', { headers: this.httpHeader }));
+      var data:any;
+      if (currentState) 
       {
-        console.error("Error: Not logged in");
-        return null;
+        console.log("Changing to False");
+        data = await firstValueFrom<any>(this.http.put(this.apiDirection + this.cobroRoute + 'despagarCobro', { headers: this.httpHeader }));
       }
-  
-      try
+      else
       {
-        var data:any;
-        if (currentState) data = await firstValueFrom<any>(this.http.put(this.apiDirection + this.cobroRoute + 'despagarCobro', { headers: this.httpHeader }));
-        else data = await firstValueFrom<any>(this.http.put(this.apiDirection + this.cobroRoute + 'pagarCobro', { headers: this.httpHeader }));
-        if (data && data.cobros)
-        {
-          // Guardar los datos o algo en el json quizá
-        }
-        return data;
+        console.log("Changing to True");
+        data = await firstValueFrom<any>(this.http.put(this.apiDirection + this.cobroRoute + 'pagarCobro', { headers: this.httpHeader }));
       }
-      catch (error)
+      console.log(data);
+      if (data)
       {
-        console.error("Error: ", error);
-        return null;
+        // Guardar los datos o algo en el json quizá
       }
+      return data;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
+
+  async pagarCobro(): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+      console.log("Changing to True");
+      const  data = await firstValueFrom<any>(this.http.put(this.apiDirection + this.cobroRoute + 'pagarCobro', { phantomValue:'uwu' }, { headers: this.httpHeader }));
+      console.log(data);
+      if (data)
+      {
+        // Guardar los datos o algo en el json quizá
+      }
+      return data;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
+
+  async despagarCobro(): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+      console.log("Changing to True");
+      const  data = await firstValueFrom<any>(this.http.put(this.apiDirection + this.cobroRoute + 'despagarCobro', { phantomValue:'uwu' }, { headers: this.httpHeader }));
+      console.log(data);
+      if (data)
+      {
+        // Guardar los datos o algo en el json quizá
+      }
+      return data;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
   }
 
   selectedCobro(id:number)
