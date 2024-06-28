@@ -6,8 +6,9 @@ import middlewares from '../middlewares';
 const boletaRoutes = express.Router();
 
 boletaRoutes.post('/crear', controllers.crear);
+boletaRoutes.get('/getBoletas', controllers.getBoletas);
+boletaRoutes.get('/getBoleta', controllers.getBoleta);
 /*
-boletaRoutes.get('/getBoletas', controllers.getArriendos);
 boletaRoutes.put('/modificar', controllers.modificar);
 boletaRoutes.delete('/eliminar', controllers.eliminar);
 boletaRoutes.put('/cambiarCliente', controllers.cambiarCliente);

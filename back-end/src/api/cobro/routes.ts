@@ -5,11 +5,10 @@ import middlewares from '../middlewares';
 
 const cobroRoutes = express.Router();
 
-cobroRoutes.post('/signUp', controllers.createAccount);
-cobroRoutes.post('/logIn', controllers.logIn);
-cobroRoutes.get('/isEmailRegistered', controllers.isEmailRegistered);
-cobroRoutes.get('/getUserFromToken', controllers.getUserFromToken);
-cobroRoutes.put('/modifyAccount', controllers.modifyAccount);
-cobroRoutes.delete('/deleteAccount', controllers.deleteAccount);
+cobroRoutes.post('/crear', controllers.crear);
+cobroRoutes.get('/getCobros', controllers.getCobros);
+cobroRoutes.get('/getCobro', controllers.getCobro);
+cobroRoutes.put('/pagarCobro', controllers.pagarCobro);
+cobroRoutes.put('/despagarCobro', controllers.despagarCobro);
 
 export default cobroRoutes;

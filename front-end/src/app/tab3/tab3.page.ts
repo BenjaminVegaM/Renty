@@ -40,6 +40,7 @@ export class Tab3Page {
 
   async ionViewDidEnter()
   {
+    this.arriendosUpdated = false;
     // If a session NOT active, go directly to the title
     if (!(await this.dbService.sessionExists()).valueOf())
     {
@@ -90,7 +91,6 @@ export class Tab3Page {
     console.log(arriendo.id);
     this.dbService.selectedArriendo(arriendo.id);
     this.router.navigate(['/arriendo-details-page']);
-    //arriendo.id;
   }
 
   getStateColor(state:number)

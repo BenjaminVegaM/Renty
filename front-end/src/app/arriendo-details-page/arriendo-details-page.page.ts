@@ -19,6 +19,10 @@ export class ArriendoDetailsPagePage implements OnInit {
   
   public results: any;
 
+  boletas: Array<any> = [];
+
+  hayBoletas = false;
+
   _nombreArriendo = '[Nombre arriendo]';
   _notaArriendo = '[Nota arriendo]';
   _porcentagePagado = '[Pagado]';
@@ -45,6 +49,8 @@ export class ArriendoDetailsPagePage implements OnInit {
 
   async ionViewDidEnter()
   {
+    this.hayBoletas = false;
+    this.arriendoUpdated = false;
     // If a session NOT active, go directly to the title
     if (!(await this.dbService.sessionExists()).valueOf())
     {
@@ -70,6 +76,15 @@ export class ArriendoDetailsPagePage implements OnInit {
       //console.log("Promise?", this.arriendos)
       //this.results = [...this.arriendo];
     }
+
+    this.boletas = await this.dbService.getBoletas();
+    console.log("Boletas = ", this.boletas);
+    if (this.boletas.length > 0)
+    {
+      this.hayBoletas = true;
+    }
+
+
     this.arriendoUpdated = true;
   }
 
@@ -117,6 +132,10 @@ export class ArriendoDetailsPagePage implements OnInit {
   {
     return 'LA FECHA';
   }
+  get getHayBoletas()
+  {
+    return this.hayBoletas;
+  }
 
   // Se ejecuta cuando se envía el formulario
   async creationValidation()
@@ -127,21 +146,19 @@ export class ArriendoDetailsPagePage implements OnInit {
     try
     {
 
-      const createArriendoReturn = await this.dbService.createBoleta(this.createForm.value);
-      console.log("Boleta create returned = ", createArriendoReturn);
+      const createBoletaReturn = await this.dbService.createBoleta(this.createForm.value);
+      console.log("Boleta create returned = ", createBoletaReturn);
 
-      if (createArriendoReturn)
+      if (createBoletaReturn)
       {
         console.log("Boleta creado successfully");
-        /*
-        this.arriendos = await this.dbService.getArriendos();
 
-        if (this.arriendos)
-        { 
-          //console.log("Promise?", this.arriendos)
-          this.results = [...this.arriendos];
+        this.boletas = await this.dbService.getBoletas();
+        console.log("Boletas = ", this.boletas);
+        if (this.boletas.length > 0)
+        {
+          this.hayBoletas = true;
         }
-        */
 
         this.modal.dismiss(this.name, 'confirm');
         this.modal.isOpen = false;
@@ -199,10 +216,15 @@ export class ArriendoDetailsPagePage implements OnInit {
 
   prevBoleta()
   {
-    this._notaArriendo = "aaaaaaaaaa";
   }
   nextBoleta()
   {
+  }
 
+  onClickEdit(event:Event, boleta:any)
+  {
+    console.log(boleta.id);
+    this.dbService.selectedBoleta(boleta.id);
+    this.router.navigate(['/boleta-details-page']);
   }
 }

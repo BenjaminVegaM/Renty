@@ -84,7 +84,7 @@
 
       <ion-toolbar>
         <ion-title>
-          Boletas?
+          Boletas
         </ion-title>
       </ion-toolbar>
 
@@ -106,7 +106,7 @@
         
       </ion-toolbar>
 
-      <ion-toolbar>
+      <ion-toolbar *ngIf="!getHayBoletas">
         <ion-item>
           <ion-text>
             Crear Boleta
@@ -121,14 +121,27 @@
         >
           <ion-icon name="add-outline" slot="icon-only"></ion-icon>
         </ion-button>
-
       </ion-toolbar>
 
-      <ion-item>
-        <ion-text>
-          Pagado: [PagadoDetalle] / [DeudaDetalle]
-        </ion-text>
-      </ion-item>
+      <ion-list *ngIf="getHayBoletas">
+        
+        <ion-toolbar *ngFor="let boleta of boletas">
+          <ion-item>
+            <ion-text>
+              {{boleta.fecha}} Pagado: [PagadoDetalle] / [DeudaDetalle]
+            </ion-text>
+          </ion-item>
+          <ion-button
+            [routerLink]="['/arriendo-details-page']"
+            color="secondary"
+            aria-label="Ver detalles"
+            slot="primary"
+            (click)="onClickEdit($event, boleta)"
+          >
+            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+      </ion-list>
     </ion-list>
     
   </div>

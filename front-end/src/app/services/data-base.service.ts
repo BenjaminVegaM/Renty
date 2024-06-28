@@ -13,6 +13,8 @@ export class DataBaseService {
   private token = '';
   private loggedUserID = -1;
   private arriendoID = -1;
+  private boletaID = -1;
+  private cobroID = -1;
   
   private apiDirection:string = 'http://localhost:5002/';
   private usuarioRoute:string = 'usuario/';
@@ -218,7 +220,7 @@ export class DataBaseService {
   selectedArriendo(id:number)
   {
     this.arriendoID = id;
-    this.httpHeader = this.httpHeader.set('arriendoID', this.arriendoID.toString());
+    this.httpHeader = this.httpHeader.set('arriendoID', id.toString());
   }
 
   /*
@@ -237,7 +239,7 @@ export class DataBaseService {
     {
       body.arriendoID = this.arriendoID;
       const data = await firstValueFrom<any>(this.http.post(this.apiDirection + this.boletaRoute + 'crear', body, { headers: this.httpHeader }));
-      if (data && data.arriendo)
+      if (data && data.boletas)
       {
         // Guardar los datos o algo en el json quizá
       }
@@ -250,12 +252,157 @@ export class DataBaseService {
     }
   }
 
-  /*
-    Cliente
-  */   
+  async getBoletas(): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+
+      const data = await firstValueFrom<any>(this.http.get(this.apiDirection + this.boletaRoute + 'getBoletas', { headers: this.httpHeader }));
+      return data.boletas;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
+
+  async getBoleta(): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+      const data = await firstValueFrom<any>(this.http.get(this.apiDirection + this.boletaRoute + 'getBoleta', { headers: this.httpHeader }));
+      return data.boleta;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
+
+  selectedBoleta(id:number)
+  {
+    this.boletaID = id;
+    this.httpHeader = this.httpHeader.set('boletaID', id.toString());
+  }
 
   /*
     Cobro
+  */
+
+  async createCobro(body:any): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+      body.boletaID = this.boletaID;
+      const data = await firstValueFrom<any>(this.http.post(this.apiDirection + this.cobroRoute + 'crear', body, { headers: this.httpHeader }));
+      if (data && data.cobros)
+      {
+        // Guardar los datos o algo en el json quizá
+      }
+      return data;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
+
+  async getCobros(): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+
+      const data = await firstValueFrom<any>(this.http.get(this.apiDirection + this.cobroRoute + 'getCobros', { headers: this.httpHeader }));
+      return data.cobros;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
+
+  async getCobro(): Promise<any>
+  {
+    if (!this.loggedIn)
+    {
+      console.error("Error: Not logged in");
+      return null;
+    }
+
+    try
+    {
+      const data = await firstValueFrom<any>(this.http.get(this.apiDirection + this.cobroRoute + 'getCobro', { headers: this.httpHeader }));
+      return data.cobro;
+    }
+    catch (error)
+    {
+      console.error("Error: ", error);
+      return null;
+    }
+  }
+
+  async cambiarEstadoCobro(currentState:boolean): Promise<any>
+  {
+    if (!this.loggedIn)
+      {
+        console.error("Error: Not logged in");
+        return null;
+      }
+  
+      try
+      {
+        var data:any;
+        if (currentState) data = await firstValueFrom<any>(this.http.put(this.apiDirection + this.cobroRoute + 'despagarCobro', { headers: this.httpHeader }));
+        else data = await firstValueFrom<any>(this.http.put(this.apiDirection + this.cobroRoute + 'pagarCobro', { headers: this.httpHeader }));
+        if (data && data.cobros)
+        {
+          // Guardar los datos o algo en el json quizá
+        }
+        return data;
+      }
+      catch (error)
+      {
+        console.error("Error: ", error);
+        return null;
+      }
+  }
+
+  selectedCobro(id:number)
+  {
+    this.cobroID = id;
+    this.httpHeader = this.httpHeader.set('cobroID', id.toString());
+  }
+
+  /*
+    Cliente
   */   
 
   /*

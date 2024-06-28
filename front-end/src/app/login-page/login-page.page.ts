@@ -48,7 +48,7 @@ export class LoginPagePage implements OnInit {
   get btnText()
   {
     //return this.loginForm.valid ? 'Sign Up!' : 'You must fill all the fields';
-    return 'Log In';
+    return 'Iniciar Sesión';
   }
   get cantLoginMessage()
   {
